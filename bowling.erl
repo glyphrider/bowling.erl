@@ -1,4 +1,4 @@
--module(bowling_kata).
+-module(bowling).
 
 -include_lib("eunit/include/eunit.hrl").
 
@@ -22,6 +22,7 @@ bonus(_OldBonus,{FrameNumber,PinsInThisFrame,_ThrowsInThisFrame},NewPins) when P
 bonus({_ThisFrameBonus,NextFrameBonus},_,_) -> {NextFrameBonus,0}.
 
 
+-ifdef(EUNIT).
 %%Tests
 
 gutter_ball_game_test() -> 0 = score([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]).
@@ -51,3 +52,5 @@ increment_score_with_bonus_test() -> 20 = increment_score(10,5,{2,0,0},{1,0}).
 count_pins_frame_less_than_ten_test() -> 3 = count_pins({3,2,1},3).
 count_pins_equal_to_ten_test() -> 3 = count_pins({10,2,1},3).
 count_pins_greater_than_ten_test() -> 0 = count_pins({11,2,1},3).
+
+-endif.
